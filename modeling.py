@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 # Пример очищенных текстов
 texts = ""
-with io.open('processed_articles.txt', encoding='utf-8') as file:
+with io.open('промежуточные результаты/processed_articles.txt', encoding='utf-8') as file:
     for line in file:
         texts += line
 

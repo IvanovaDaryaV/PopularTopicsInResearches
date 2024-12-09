@@ -25,7 +25,7 @@ def remove_ending(article):
 
 if __name__ == "__main__":
     # pdf_path = "сборник_статей.pdf"
-    pdf_path = "сборник2.pdf"
+    pdf_path = "исходные файлы (сборники)/сборник2.pdf"
 
     # разбиение текста по слову "аннотация"
     articles = extract_articles_from_pdf(pdf_path)
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     for article in articles:
         list_of_articles.append(remove_ending(article))
 
-    with open('processed_articles.txt', 'w', encoding='utf-8') as file:
+    with open('промежуточные результаты/processed_articles.txt', 'w', encoding='utf-8') as file:
         # for article in list_of_articles:
         file.write(' '.join(list_of_articles) + '\n')
 
