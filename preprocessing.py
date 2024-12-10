@@ -14,29 +14,29 @@ def preprocess_text(text):
     doc = nlp(cleaned_text)
     lemmatized_tokens = [token.lemma_ for token in doc if not token.is_stop and not token.is_punct and token.lemma_]
 
-    return lemmatized_tokens
+    # Удаление слова "рис"
+    lemmatized_tokens = [token for token in lemmatized_tokens if token.lower() != "рис"]
 
+    return lemmatized_tokens
 
 # Пример использования
 if __name__ == "__main__":
     print("Считывание файла...")
     tmp = ""
-    with io.open('промежуточные результаты/processed_articles.txt', encoding='utf-8') as file:
+    with io.open('промежуточные результаты/2019.txt', encoding='utf-8') as file:
         for line in file:
             tmp += line
 
     texts = tmp.split('СТАТЬЯ\n')
-    # print(texts[2])
 
     print('Предобработка текстов...')
-    list = []
+    processed_texts = []
     for sample_text in texts:
         result = preprocess_text(sample_text)
-        # print("Лемматизированные токены:", result)
-        list.append(result)
+        processed_texts.append(result)
 
-    print('Запись токенизированных предложений')
-    with open('промежуточные результаты/tokenized_articles.txt', 'w', encoding='utf-8') as file:
-        for article in list:
+    print('Запись токенизированных предложений...')
+    with open('промежуточные результаты/tokenized_2019.txt', 'w', encoding='utf-8') as file:
+        for article in processed_texts:
             file.write(' '.join(article) + '\n')
     print('Файл успешно записан')

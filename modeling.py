@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 # Пример очищенных текстов
 texts = ""
-with io.open('промежуточные результаты/processed_articles.txt', encoding='utf-8') as file:
+with io.open('промежуточные результаты/tokenized_2019.txt', encoding='utf-8') as file:
     for line in file:
         texts += line
 
@@ -29,7 +29,7 @@ lda.fit(tfidf_matrix)
 # Темы
 for idx, topic in enumerate(lda.components_):
     print(f"Тема {idx + 1}:")
-    print([terms[i] for i in topic.argsort()[-5:][::-1]])  # Топ-5 слов каждой темы
+    print([terms[i] for i in topic.argsort()[-10:][::-1]])  # Топ-10 слов каждой темы
 
 # Облако слов для первой темы
 topic_0_words = {terms[i]: lda.components_[0][i] for i in range(len(terms))}
