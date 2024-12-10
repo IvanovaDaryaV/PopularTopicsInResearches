@@ -23,7 +23,7 @@ def preprocess_text(text):
 if __name__ == "__main__":
     print("Считывание файла...")
     tmp = ""
-    with io.open('промежуточные результаты/2019.txt', encoding='utf-8') as file:
+    with io.open('промежуточные результаты/2024.txt', encoding='utf-8') as file:
         for line in file:
             tmp += line
 
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         processed_texts.append(result)
 
     print('Запись токенизированных предложений...')
-    with open('промежуточные результаты/tokenized_2019.txt', 'w', encoding='utf-8') as file:
+    with open('промежуточные результаты/tokenized_2024                                                                            .txt', 'w', encoding='utf-8') as file:
         for article in processed_texts:
             file.write(' '.join(article) + '\n')
     print('Файл успешно записан')
