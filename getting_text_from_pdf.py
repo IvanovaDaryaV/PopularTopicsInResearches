@@ -1,5 +1,11 @@
 import fitz  # PyMuPDF
 import re
+
+'''
+Получение текста из PDF без предобработки,
+Сохранение промежуточных результатов 
+'''
+
 def extract_articles_from_pdf(pdf_path, article_marker="АННОТАЦИЯ"):
     doc = fitz.open(pdf_path)
     all_text = ""
@@ -24,19 +30,24 @@ def remove_ending(article):
     return "СТАТЬЯ\n" + re.split(rf"({"СПИСОК ЛИТЕРАТУРЫ"})", article, flags=re.IGNORECASE)[0]
 
 if __name__ == "__main__":
-    # pdf_path = "сборник_статей.pdf"
-    pdf_path = "исходные файлы (сборники)/сборник2.pdf"
+    year = 2019
 
-    # разбиение текста по слову "аннотация"
-    articles = extract_articles_from_pdf(pdf_path)
+    for i in range(5):
 
-    # убрать текст после "список литературы"
-    list_of_articles = []
-    for article in articles:
-        list_of_articles.append(remove_ending(article))
+        # pdf_path = "сборник_статей.pdf"
+        pdf_path = f"исходные файлы (сборники)/{year}.pdf"
 
-    with open('промежуточные результаты/processed_articles.txt', 'w', encoding='utf-8') as file:
-        # for article in list_of_articles:
-        file.write(' '.join(list_of_articles) + '\n')
+        # разбиение текста по слову "аннотация"
+        articles = extract_articles_from_pdf(pdf_path)
 
-    print(list_of_articles[0])
+        # убрать текст после "список литературы"
+        list_of_articles = []
+        for article in articles:
+            list_of_articles.append(remove_ending(article))
+
+        with open(f'промежуточные результаты/{year}.txt', 'w', encoding='utf-8') as file:
+            # for article in list_of_articles:
+            file.write(' '.join(list_of_articles) + '\n')
+
+        print(list_of_articles[0])
+        year += 1
